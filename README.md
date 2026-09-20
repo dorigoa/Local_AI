@@ -41,6 +41,7 @@ Eseguire lo script:
 	./build/bin/llama-server --list-devices
 ```
 ## Runnare
+Usare il chat template in questo repository per usare il modello con Claude Code (è una versione parcata del chat template ufficiale).
 ```
 	M=$HF_HUB_CACHE/models--AtomicChat--Qwen3.8-Flash-Next-GGUF/snapshots/142262902a46f7daed19c79d0771534c8106ad59/Qwen3.8-Flash-Next-AD-4.27bpw-Q4_K_M-M64
 	cd ~/src/llama.cpp-cuda
