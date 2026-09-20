@@ -13,3 +13,7 @@ cmake -B build -DGGML_CUDA=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CUDA_COMPILER=/
 cmake --build build --config Release -j 16 --target llama-server llama-bench
 ./build/bin/llama-server --list-devices
 ```
+## Controllo utilizzo memoria su Nvidia
+```
+nvidia-smi --query-gpu=index,name,memory.used,memory.total --format=csv
+```
