@@ -8,7 +8,6 @@ for i in {1..4}; do hf download hf://unsloth/Qwen3.8-Flash-Next-GGUF/UD-Q4_K_XL/
 ## Runnare
 Usare il chat template in questo repository per usare il modello con Claude Code (è una versione patchata del chat template ufficiale).
 ```
-	#M=$HF_HUB_CACHE/models--AtomicChat--Qwen3.8-Flash-Next-GGUF/snapshots/142262902a46f7daed19c79d0771534c8106ad59/Qwen3.8-Flash-Next-AD-4.27bpw-Q4_K_M-M64
 	M=$HF_HUB_CACHE/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots/38bb39ee97821de2c9009abb7e93950eec396e66/UD-Q4_K_XL
 	cd ~/src/llama.cpp-cuda
 	CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1,0 ./build/bin/llama-server --host 0.0.0.0 --port 8088 -m "$M"/*-00001-of-*.gguf -ngl 99 --n-cpu-moe 35 -ts 4,1 --fit off -fa on -c 131072 -ctk q8_0 -ctv q8_0 -np 1 -b 1024 -ub 512 -t 16 -tb 16 --load-mode none --lazy-mode off --jinja --temp 0.2 --top-k 20 --min-p 0 --top-p 0.95 --chat-template-file ~/qwen3.8-flash-next-177b-chat-template.jinja
