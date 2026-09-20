@@ -1,8 +1,16 @@
+# NVIDIA-Nemotron-3-Super 120B Q4 sul PC con uso di ssd e memoria
+## Scaricare
 ```
-M=/nvme/huggingface/hub/models--unsloth-NVIDIA-Nemotron-3-Super-120B-A12B-GGUF/UD-Q4_K_XL/
+cd $HF_HUB_CACHE
+mkdir -p models--unsloth-NVIDIA-Nemotron-3-Super-120B-A12B-GGUF/UD-Q4_K_XL/
+wget https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF/resolve/main/UD-Q4_K_XL/NVIDIA-Nemotron-3-Super-120B-A12B-UD-Q4_K_XL-00001-of-00003.gguf
+wget https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF/resolve/main/UD-Q4_K_XL/NVIDIA-Nemotron-3-Super-120B-A12B-UD-Q4_K_XL-00002-of-00003.gguf
+wget https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF/resolve/main/UD-Q4_K_XL/NVIDIA-Nemotron-3-Super-120B-A12B-UD-Q4_K_XL-00003-of-00003.gguf
 ```
-
+## Runnare
 ```
+M=/$HF_HUB_CACHE/models--unsloth-NVIDIA-Nemotron-3-Super-120B-A12B-GGUF/UD-Q4_K_XL/
+cd ~/src/llama.cpp-cuda
 CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1,0 ./build/bin/llama-server --host 0.0.0.0 --port 8088 \
   -m "$M"/*-00001-of-*.gguf -ngl 99 \
   --n-cpu-moe 78 -ts 4,1 --fit off -fa on \
