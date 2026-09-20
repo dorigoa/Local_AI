@@ -7,6 +7,11 @@ for i in 1 2 3; do
   wget https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF/resolve/main/UD-Q4_K_XL/NVIDIA-Nemotron-3-Super-120B-A12B-UD-Q4_K_XL-0000$i-of-00003.gguf;
 done
 ```
+
+### Nota su MTP 
+Unsloth non fornisce gguf con MTP head nel modello, ne' tantomeno una head su gguf esterno. Per ora bisogna runnare senza prediction.
+La cosa va seguita.
+
 ## Runnare
 ```
 M=/$HF_HUB_CACHE/models--unsloth-NVIDIA-Nemotron-3-Super-120B-A12B-GGUF/UD-Q4_K_XL/
