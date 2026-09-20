@@ -18,7 +18,7 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1,0 ./build/bin/llama-server -
   -np 1 -b 1024 -ub 512 -t 16 -tb 16 \
   --load-mode none --lazy-mode off \
   --jinja \
-  --temp 0.2 --top-k 20 --min-p 0 --top-p 0.95 \
+  --temp 1 --top-k 20 --min-p 0 --top-p 0.95 \
   --chat-template-file ~/nvidia-nemotron-3-super-120B.jinja
 ```
 
