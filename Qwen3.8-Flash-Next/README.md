@@ -5,20 +5,6 @@ Controllare il valore di `$HF_HUB_CACHE`; deve puntare ad una storage area capie
 ```
 for i in {1..4}; do hf download hf://unsloth/Qwen3.8-Flash-Next-GGUF/UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-0000$i-of-00004.gguf; done`
 ```
-## Fissare clock GPU   
-Eseguire lo script allo scopo di impedire un throttling dei GPU clocks:
-```
-source gpu-clocks.sh
-```
-## Buildare llama.cpp con CUDA
-```
-	mkdir -p ~/src && cd ~/src
-	git clone --depth 1 https://github.com/ggml-org/llama.cpp llama.cpp-cuda
-	cd llama.cpp-cuda
-	cmake -B build -DGGML_CUDA=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CUDA_COMPILER=/usr/local/cuda-13.1/bin/nvcc
-	cmake --build build --config Release -j 16 --target llama-server llama-bench
-	./build/bin/llama-server --list-devices
-```
 ## Runnare
 Usare il chat template in questo repository per usare il modello con Claude Code (è una versione patchata del chat template ufficiale).
 ```
