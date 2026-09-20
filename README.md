@@ -46,4 +46,7 @@ Eseguire lo script:
 	cd ~/src/llama.cpp-cuda
 	CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1,0 ./build/bin/llama-server --host 0.0.0.0 --port 8088 -m "$M"/*-00001-of-*.gguf -ngl 99 --n-cpu-moe 28 -ts 3,1 --fit off -fa on -c 131072 -ctk q8_0 -ctv q8_0 -np 1 -b 1024 -ub 512 -t 16 -tb 16 --load-mode none --lazy-mode off --jinja --temp 0.2 --top-k 20 --min-p 0 --top-p 0.95 --chat-template-file ~/qwen3.8-flash-next-177b-chat-template.jinja
 ```
+
+Se c'e' un cuda out of memory bisogna spostare su RAM più esperti: aumentare il valore di `--n-cpu-moe` e riprovare.
+
 `--lazy-mode off` migliora le prestazioni di un 1-2% perché carica di più in RAM/VARM invece che fare stream da SSD. Se avessi un NVMe molto veloce potrei usare `--lazy-mode off` e osservare le differenze.
