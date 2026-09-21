@@ -8,7 +8,8 @@ for i in {1..4}; do hf download hf://unsloth/Qwen3.8-Flash-Next-GGUF/UD-Q4_K_XL/
 ## Runnare
 Usare il chat template in questo repository per usare il modello con Claude Code (è una versione patchata del chat template ufficiale).
 ```
-M=$HF_HUB_CACHE/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots/38bb39ee97821de2c9009abb7e93950eec396e66/UD-Q4_K_XL
+#M=$HF_HUB_CACHE/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots/38bb39ee97821de2c9009abb7e93950eec396e66/UD-Q4_K_XL
+M=$(dirname $(find $HF_HUB_CACHE/models--unsloth--Qwen3.8-Flash-Next-GGUF/ -iname *.gguf|grep 00001))
 cd ~/src/llama.cpp-cuda
 CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1,0 ./build/bin/llama-server --host 0.0.0.0 --port 8088 \
 	-m "$M"/*-00001-of-*.gguf -ngl 99 \
