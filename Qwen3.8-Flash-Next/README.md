@@ -11,14 +11,16 @@ Usare il chat template in questo repository per usare il modello con Claude Code
 #M=$HF_HUB_CACHE/models--unsloth--Qwen3.8-Flash-Next-GGUF/snapshots/38bb39ee97821de2c9009abb7e93950eec396e66/UD-Q4_K_XL
 M=$(dirname $(find $HF_HUB_CACHE/models--unsloth--Qwen3.8-Flash-Next-GGUF/ -iname *.gguf|grep 00001))
 cd ~/src/llama.cpp-cuda
-CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1,0 ./build/bin/llama-server --host 0.0.0.0 --port 8088 \
-	-m "$M"/*-00001-of-*.gguf -ngl 99 \
-	--n-cpu-moe 35 -ts 4,1 --fit off -fa on \
+CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1,0 ./build/bin/llama-server \
+	--host 0.0.0.0 --port 8088 \
+	-m "$M"/*-00001-of-*.gguf \
+	-ngl 99 --fit off -fa on \
 	-c 131072 -ctk q8_0 -ctv q8_0 \
 	-np 1 -b 1024 -ub 512 -t 16 -tb 16 \
-	--load-mode none --lazy-mode off \
-	--jinja --temp 0.2 --top-k 20 --min-p 0 --top-p 0.95 \
-	--chat-template-file ~/qwen3.8-flash-next-177b-chat-template.jinja
+    --load-mode none --lazy-mode off \
+    --jinja --temp 1.0 --top-k 20 --min-p 0 --top-p 0.95 \
+    --chat-template-file ~/qwen3.8-flash-next-177b-chat-template.jinja \
+    --n-cpu-moe 35 -ts 4,1
 ```
 I parametri `-ngl 99 --n-cpu-moe 35 -ts 4,1 --fit off -fa on -c 131072 -ctk q8_0 -ctv q8_0` sono stati regolati dopo varie iterazioni per funzionare correttamente sul mio PC, AMD Ryzen 9 5950X 16-Core, 96GB RAM DDR4, Nvidia 4060 Ti 16GB + Nvidia 5060 Ti 16GB.
 
