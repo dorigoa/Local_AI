@@ -22,6 +22,8 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1,0 ./build/bin/llama-server -
 ```
 I parametri `-ngl 99 --n-cpu-moe 35 -ts 4,1 --fit off -fa on -c 131072 -ctk q8_0 -ctv q8_0` sono stati regolati dopo varie iterazioni per funzionare correttamente sul mio PC, AMD Ryzen 9 5950X 16-Core, 96GB RAM DDR4, Nvidia 4060 Ti 16GB + Nvidia 5060 Ti 16GB.
 
+Non si può aumentare il contesto in quanto l'uso della RAM e VRAM sono già al limite.
+
 Se c'e' un cuda out of memory bisogna spostare su RAM più esperti: aumentare il valore di `--n-cpu-moe` e riprovare.
 
 `--lazy-mode off` migliora le prestazioni di un 1-2% perché carica di più in RAM/VARM invece che fare stream da SSD. Se avessi un NVMe molto veloce potrei usare `--lazy-mode off` e osservare le differenze.
