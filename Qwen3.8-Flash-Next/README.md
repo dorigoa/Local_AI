@@ -18,7 +18,7 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1,0 ./build/bin/llama-server \
 	-c 131072 -ctk q8_0 -ctv q8_0 \
 	-np 1 -b 1024 -ub 512 -t 16 -tb 16 \
     --load-mode none --lazy-mode off \
-    --jinja --temp 1.0 --top-k 20 --min-p 0 --top-p 0.95 --presence-penalty 1.5 --repeat-penalty 1.0 \
+    --jinja --temp 1.0 --top-k 20 --min-p 0 --top-p 0.95 --presence-penalty 0.0 --repeat-penalty 1.0 \
     --chat-template-file ~/qwen3.8-flash-next-177b-chat-template.jinja \
     --n-cpu-moe 35 -ts 4,1
 ```
